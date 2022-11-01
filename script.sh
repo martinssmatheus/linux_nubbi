@@ -14,11 +14,13 @@ echo "Uninstall PHP 8.1"
 apt-get autoremove php8.1
 
 echo "Install PHP"
-apt install software-properties-common apt-transport-https -y
-add-apt-repository ppa:ondrej/php -y
-echo deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main > /etc/apt/sources.list.d/ondrej-ubuntu-php-kinetic.list
-apt update -y && apt upgrade -y
-apt install php7.4 php7.4-common libapache2-mod-php7.4 php7.4-cli php7.4-symfony-string php7.4-intl -y
+apt-get update
+apt -y install software-properties-common
+add-apt-repository ppa:ondrej/php
+apt-get update
+
+apt -y install php7.4
+apt-get install -y php7.4-{bcmath,bz2,intl,gd,mbstring,mysql,zip,sqlite,soap,imagick,curl,json,xml}
 service apache2 restart -y
 
 echo "Install workbench"
@@ -42,9 +44,12 @@ cp api-token.php ../
 chmod -R 777 /var/www/html
 
 echo "Install Composer"
-cd /var/www/html/api-mksolution
-apt-get install composer -y
-composer install
+sudo apt install curl php-cli php-mbstring git unzip
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+sudo chown -R $USER ~/.composer/
+composer global require hirak/prestissimo
 composer update
 
 echo "Fininsh"
