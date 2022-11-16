@@ -7,6 +7,10 @@ echo "Removendo travas eventuais do apt"
 rm /var/lib/dpkg/lock-frontend
 rm /var/cache/apt/archives/lock
 
+echo "Install vpn"
+apt install network-manager-l2tp network-manager-l2tp
+apt install network-manager-l2tp network-manager-l2tp-gnome
+
 echo "install APACHE"
 apt-get install apache2 -y
 
