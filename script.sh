@@ -41,7 +41,7 @@ snap install discord
 echo "mksolution"
 apt-get install git -y
 cd /var/www/html
-git clone https://matheus.martins-at-507937190610:ijn4URvieG2+d6FzcShRpFsizv1E233VPFcyAaNQrMU=@git-codecommit.us-west-2.amazonaws.com/v1/repos/api-mksolutions
+git clone https://usuario:senha_gitaws@git-codecommit.us-west-2.amazonaws.com/v1/repos/api-mksolutions
 cd api-mksolutions
 cp api-token.php ../
 chmod -R 777 /var/www/html
